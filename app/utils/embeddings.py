@@ -1,0 +1,18 @@
+import os
+from dotenv import load_dotenv
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+
+# Load environment variables
+load_dotenv()
+
+api_key = os.getenv("GOOGLE_API_KEY")
+
+if not api_key:
+    raise ValueError("GOOGLE_API_KEY is missing in the .env file!")
+
+# Single Source of Truth for Embeddings
+# We use text-embedding-004, Google's recommended embedding model
+embeddings = GoogleGenerativeAIEmbeddings(
+    model="models/text-embedding-004",
+    google_api_key=api_key
+)
