@@ -8,6 +8,9 @@ def response_agent(state: dict) -> dict:
     Takes ticket and knowledge from state, uses LLM to craft a polite, 
     customer-facing reply adhering strictly to company policy.
     """
+
+    print("\n RESPONSE AGENT RUNNING")
+
     ticket = state["ticket"]
     knowledge = state.get("knowledge", "No specific policy provided.")
 
@@ -22,6 +25,9 @@ def response_agent(state: dict) -> dict:
 
     # 2. Invoke LLM
     response = llm.invoke(prompt)
+
+    print("Generated response:")
+    print(response.text.strip())
 
     # 3. Clean and return response string using response.text
     return {

@@ -15,6 +15,9 @@ def reviewer_agent(state: dict) -> dict:
     Evaluates draft response against ticket and knowledge using Pydantic structured output.
     Returns: {"review": {"approved": bool, "feedback": str}}
     """
+
+    print("\n🔎 REVIEWER AGENT RUNNING")
+
     ticket = state["ticket"]
     knowledge = state["knowledge"]
     response = state["response"]
@@ -31,6 +34,9 @@ def reviewer_agent(state: dict) -> dict:
 
     # 4. Invoke LLM (returns direct Pydantic ReviewResult instance)
     review_output: ReviewResult = structured_llm.invoke(prompt)
+
+    print("Approved:", review_output.approved)
+    print("Feedback:", review_output.feedback)
 
     # 5. Return dict representation for state merge
     return {
