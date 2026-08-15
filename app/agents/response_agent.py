@@ -11,10 +11,13 @@ def response_agent(state: dict) -> dict:
     ticket = state["ticket"]
     knowledge = state.get("knowledge", "No specific policy provided.")
 
+    review_feedback = state.get("review", {}).get("feedback", "")
+
     # 1. Format prompt
     prompt = RESPONSE_PROMPT.format(
         ticket=ticket,
-        knowledge=knowledge
+        knowledge=knowledge,
+        review_feedback=review_feedback
     )
 
     # 2. Invoke LLM
