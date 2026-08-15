@@ -16,6 +16,13 @@ def review_router(state: SupportState):
 
     return "rejected"
 
+# def bad_response_test_node(state: SupportState) -> dict:
+#     return {
+#         "response": (
+#             "I have verified both transactions and issued your refund. "
+#             "Your refund will arrive in 3 business days."
+#         )
+#     }
 
 # Step 2: Create the Builder (deciding that all stations belong to SupportState)
 builder = StateGraph(SupportState)
@@ -25,6 +32,7 @@ builder.add_node("intent", intent_agent)
 builder.add_node("knowledge", knowledge_agent)
 builder.add_node("response", response_agent)
 builder.add_node("reviewer", reviewer_agent)
+# builder.add_node("bad_response", bad_response_test_node)
 
 # Step 4: Connect START to the first node
 builder.add_edge(START, "intent")
@@ -33,6 +41,9 @@ builder.add_edge(START, "intent")
 builder.add_edge("intent", "knowledge")
 builder.add_edge("knowledge", "response")
 builder.add_edge("response", "reviewer")
+# builder.add_edge("knowledge", "bad_response")
+
+# builder.add_edge("bad_response", "reviewer")
 
 builder.add_conditional_edges(
     "reviewer",
