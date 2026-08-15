@@ -1,17 +1,32 @@
 from typing import TypedDict, NotRequired
 from langchain_core.documents import Document
 
+from typing import TypedDict, NotRequired
+
+
 class SupportState(TypedDict):
     ticket: str
 
     intent: NotRequired[str]
 
-    documents: NotRequired[list[Document]]
+    knowledge: NotRequired[str]
 
-    draft_response: NotRequired[str]
+    response: NotRequired[str]
 
-    review_status: NotRequired[str]
+    review: NotRequired[dict]
 
-    review_feedback: NotRequired[str]
 
-    final_response: NotRequired[str]
+# class SupportState(TypedDict):
+#     ticket: str
+
+#     intent: NotRequired[str]
+
+#     documents: NotRequired[list[Document]]
+
+#     draft_response: NotRequired[str]
+
+#     review_status: NotRequired[str]
+
+#     review_feedback: NotRequired[str]
+
+#     final_response: NotRequired[str]
